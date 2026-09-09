@@ -15,3 +15,4 @@ def read_lines(filename):
 
     except FileNotFoundError:
         return []
+5
