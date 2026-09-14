@@ -1,2 +1,6 @@
 TestUser,testpassword,driver
-TestUser,testpassword,driver
+Dom,password123,driver
+Alice,alice456,driver
+John,john789,driver
+Sarah,sarah321,driver
+Mike,mike654,driver
