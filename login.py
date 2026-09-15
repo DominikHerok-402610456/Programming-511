@@ -5,11 +5,8 @@
 
 from file_handler import read_lines
 
-#collect user input for username and password:
-print('================================='+'\nLogin Page:'+'\n=================================\n')
-users = read_lines("users.txt")
-
-def login():
+def login_user():
+    print('=================================' + '\nLogin Page:' + '\n=================================\n')
     entered_username = input("Please enter your username: ")
     username_check = False
     users = read_lines("users.txt")
@@ -41,6 +38,7 @@ def login():
                 if entered_password == stored_password:
                     print('Login Successful!')
                     return role #will be used elsewhere to determine what to do
+
                 else:
                     print('Incorrect password. Please try again.')
                     password_counter += 1
@@ -51,4 +49,5 @@ def login():
     if username_check == False:
         print('No user found with that username. Please try again or register in the main menu.')
         return None
+
 

@@ -5,6 +5,9 @@
 redirecting from there.'''
 
 from validation import validate_yes_no
+from register import register_user
+from login import login_user
+
 
 def display_function():
     #while loop to check for choice continually
@@ -23,10 +26,16 @@ def display_function():
         #if digit, check if 1,2,3 or anything else
         if choice == 1:
             #login.py
-            print(choice)
+            user_role = login_user()
+
         elif choice == 2:
-            #register.py
-            print(choice)
+            #register.py to register user
+            registration_result = register_user()
+
+            #if registration is successful, login user
+            if registration_result is True:
+                login_user()
+
 
         #Check for yes and no inputs
         elif choice == 3:
@@ -41,5 +50,7 @@ def display_function():
             else:
                 print('Please enter either Yes or No.')
                 choice = 0
+
+display_function()
 
 
