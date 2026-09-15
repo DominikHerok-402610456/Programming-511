@@ -1,0 +1,17 @@
+
+
+
+
+
+
+                Username entered
+                       ↓
+                Search users.txt
+                       ↓
+                 Match found?
+                 /          \
+               YES           NO
+                ↓             ↓
+        Don't register    Ask for password
+                ↓              ↓
+ 'Username already exists'

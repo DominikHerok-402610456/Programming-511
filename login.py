@@ -25,19 +25,17 @@ def login():
         role = split_line_list[2]
         #IF Statement to check if username and password match
         #compare username to user input
-        print("Checking:",stored_username)
-        print(repr(entered_username))
-        print(repr(stored_username))
+        #print("Checking:",stored_username)
+        #print(repr(entered_username))
+        #print(repr(stored_username))
 
         if entered_username.lower() == stored_username.lower():
             #Only if username is correct, compare password
             password_check = False
             username_check = True
-
-
-            #apparently better to do while not as password_check is bool
-
             password_counter = 0
+
+            #While loop for password check, with 3 tries before breaking out of the loop
             while password_counter != 3:
                 entered_password = input("Please enter your password: ")
                 if entered_password == stored_password:
@@ -53,9 +51,4 @@ def login():
     if username_check == False:
         print('No user found with that username. Please try again or register in the main menu.')
         return None
-
-
-
-print(users)
-login()
 
