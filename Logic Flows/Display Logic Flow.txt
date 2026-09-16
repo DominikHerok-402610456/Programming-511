@@ -1,0 +1,43 @@
+2. display.py
+-------------
+DISPLAY MAIN MENU
+  │
+  ↓
+Ask user for menu choice
+  │
+  ↓
+Is input a number?
+  │
+  ├── NO → Display error
+  │         ↓
+  │       Show menu again
+  │
+  └── YES
+       ↓
+    Convert input to integer
+       │
+       ├── 1 → login_user()
+       │
+       │          ↓
+       │       Receive login result / role
+       │
+       │
+       ├── 2 → register_user()
+       │
+       │          ↓
+       │       Receive registration result
+       │
+       │          ↓
+       │       If registration successful
+       │          ↓
+       │       login_user()
+       │
+       │
+       └── 3 → Ask for YES/NO confirmation
+                    │
+                    ↓
+                 validation.py
+                    │
+                    ├── YES → Exit
+                    ├── NO → Main menu
+                    └── Invalid → Error → Main menu

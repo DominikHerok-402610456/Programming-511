@@ -1,0 +1,59 @@
+4. login.py
+------------
+START login_user()
+  │
+  ↓
+Ask for username
+  │
+  ↓
+Read users.txt
+  │
+  ↓
+FOR each user record
+  │
+  ↓
+Strip line
+  │
+  ↓
+Split line by comma
+  │
+  ↓
+Extract:
+  ├── username
+  ├── password
+  └── role
+  │
+  ↓
+Does username match?
+  │
+  ├── NO → Continue searching
+  │
+  └── YES
+       ↓
+     Ask for password
+       │
+       ↓
+     Is password correct?
+       │
+       ├── YES
+       │    ↓
+       │  Login successful
+       │    ↓
+       │  return role
+       │
+       └── NO
+            ↓
+          Increment failed attempts
+            ↓
+          Try again
+            │
+            ├── Correct → return role
+            │
+            └── 3 failures → return None
+  │
+  ↓
+Username not found
+  │
+  ↓
+return None
+

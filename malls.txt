@@ -1,0 +1,3 @@
+01,Gateway Theatre of Shopping,250,flat
+02,Pavilion Shopping Centre,180,hourly
+03,La Lucia Mall,150,hourly_capped

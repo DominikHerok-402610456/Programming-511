@@ -1,0 +1,26 @@
+
+5. validation.py
+----------------
+validate_yes_no()
+  │
+  ↓
+Receive user input
+  │
+  ↓
+strip()
+  │
+  ↓
+upper()
+  │
+  ↓
+Is input YES?
+  ├── YES → return True
+  │
+  ↓
+Is input NO?
+  ├── YES → return False
+  │
+  ↓
+Otherwise
+  │
+  └── return None

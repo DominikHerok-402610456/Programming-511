@@ -1,8 +1,8 @@
 # ==========================================
 # DISPLAY.PY
 # ==========================================
-'''Handles code relating to initial display of menu and choices,
-redirecting from there.'''
+
+'''Handles code relating to initial display of menu and choices for user. 1. Login, 2. Register, 3. Exit'''
 
 from validation import validate_yes_no
 from register import register_user
@@ -15,7 +15,7 @@ def display_function():
     while choice != 3:
 
         print('================================='+'\nSmart Mall Parking System'+'\n================================='+'\n1. Login'+'\n2. Register'+'\n3. Exit')
-        user_input = input("Please enter your choice: ")
+        user_input = input("Please enter your choice: (1 | 2 | 3): ")
         #first check for strings
         if user_input.isdigit():
             choice = int(user_input)
@@ -26,10 +26,22 @@ def display_function():
         #if digit, check if 1,2,3 or anything else
         if choice == 1:
             #login.py
-            user_role = login_user()
+            # Remember to assign the function to a variable for the return
+            login_result = login_user() # Returns role if successful, None if not
+
+            #redirect to appropriate menu based on role
+            if login_result == 'admin':
+                print('Admin!')
+            elif login_result == 'driver':
+                print('Driver!')
+            elif login_result == 'owner':
+                print('Welcome Grand Master Supreme')
+            else:
+                print('Role not found. Please try again or contact support.')
 
         elif choice == 2:
             #register.py to register user
+            #Remember to assign the function to a variable for the return
             registration_result = register_user()
 
             #if registration is successful, login user

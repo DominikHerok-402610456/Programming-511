@@ -1,0 +1,30 @@
+6. file_handler.py
+------------------
+1. save_record(filename, line)
+  │
+  ↓
+Open file in append mode ('a')
+  │
+  ↓
+Write record
+  │
+  ↓
+Add newline
+  │
+  ↓
+File automatically closes
+
+
+
+
+2. read_lines(filename)
+  │
+  ↓
+Try to open file in read mode ('r')
+  │
+  ↓
+Read all lines
+  │
+  ├── File exists → return list of lines
+  │
+  └── File doesn't exist → return []

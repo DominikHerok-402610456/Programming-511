@@ -22,9 +22,7 @@ def login_user():
         role = split_line_list[2]
         #IF Statement to check if username and password match
         #compare username to user input
-        #print("Checking:",stored_username)
-        #print(repr(entered_username))
-        #print(repr(stored_username))
+
 
         if entered_username.lower() == stored_username.lower():
             #Only if username is correct, compare password

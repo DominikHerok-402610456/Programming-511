@@ -1,17 +1,47 @@
-
-
-
-
-
-
-                Username entered
-                       ↓
-                Search users.txt
-                       ↓
-                 Match found?
-                 /          \
-               YES           NO
-                ↓             ↓
-        Don't register    Ask for password
-                ↓              ↓
- 'Username already exists'
+3. register.py
+--------------
+START register_user()
+  │
+  ↓
+Ask for username
+  │
+  ↓
+Read users.txt
+  │
+  ↓
+Search existing users
+  │
+  ↓
+Does username already exist?
+  │
+  ├── YES
+  │    ↓
+  │  Display "Username already exists"
+  │    ↓
+  │  Ask for username again
+  │
+  └── NO
+       ↓
+     Display "Username is available"
+       ↓
+     Ask for password
+       ↓
+     Create new user record
+       │
+       ↓
+     username,password,driver
+       │
+       ↓
+     save_record()
+       │
+       ↓
+     users.txt
+       │
+       ↓
+     return True
+       │
+       ↓
+     Back to display.py
+       │
+       ↓
+     login_user()
