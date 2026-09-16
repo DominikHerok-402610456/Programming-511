@@ -5,7 +5,7 @@
 """ Display the driver menu and handle driver choices."""
 
 from file_handler import read_lines
-from validation import validate_yes_no
+from mall_menu import mall_menu
 
 def driver_menu():
     print("=================================")
@@ -49,7 +49,7 @@ def driver_menu():
             print("Available Malls:")
 
             #go through each line in malls.txt and isolate each variable, to display
-
+            #Main FOR loop to display malls
             for line in read_lines('malls.txt'):
                 stripped_line = line.strip()
                 split_line_list = stripped_line.split(',')
@@ -60,17 +60,46 @@ def driver_menu():
                 print(f"{int(mall_id)}. {mall_name}")
 
 
-            mall_choice = input("Please enter the number of the mall you would like to park in: ")
-            if mall_choice.isdigit():
-                mall_choice = int(mall_choice)
+            #second FOR loop to search for selected mall
+            while True:
 
-            else:
-                print("Please enter a valid number that corresponds to a mall.")
+                mall_choice = input("Please enter the number of the mall you would like to park in: ")
+                if mall_choice.isdigit():
+                    mall_choice = int(mall_choice)
+
+
+
+                mall_exists = False
+
+                for line in read_lines('malls.txt'):
+
+                    stripped_line = line.strip()
+                    split_line_list = stripped_line.split(',')
+                    mall_id = split_line_list[0]
+                    mall_name = split_line_list[1]
+                    if int(mall_id) == mall_choice:
+                        print(f'You have selected {mall_name}')
+                        stored_mall_id = mall_id
+                        stored_mall_name = mall_name
+                        mall_exists = True
+                        break
+                        #change to mall_menu
+
+                if mall_exists:
+                    break
+                else:
+                    print('Please enter a valid mall number.')
+                    continue
+
+
+
+        mall_menu(stored_mall_id)
+
 
 
         # ----------------------------------------------------------------------------------------------------------
         #LOGOUT logic using validate_yes_no function
-        elif driver_choice == 7:
+        if driver_choice == 7:
             logout_choice = input("Are you sure you want to logout? Enter either Yes or No.")
             logout_result = validate_yes_no(logout_choice)
             if logout_result is True:
