@@ -6,7 +6,7 @@
 
 from file_handler import read_lines
 
-def mall_menu(stored_mall_id):
+def mall_menu(username, stored_mall_id):
     # ----------------------------------------------------------------------------------------------------------
     malls = read_lines('malls.txt')
     for line in malls:
@@ -77,8 +77,21 @@ def mall_menu(stored_mall_id):
             else:
                 print("Parking Unsuccessful! No spaces available.")
 
+            highest_id = 0
+
+            for line in read_lines('parking_records.txt'):
+                stripped_line = line.strip()
+                split_line_list = stripped_line.split(',')
+
+                record_list = split_line_list[0]
+
+                record_id = int(record_list)
+                if record_id > highest_id:
+                    highest_id = record_id
 
 
+            new_record_id = highest_id + 1
+            print('0'+'0'+f'{new_record_id}')
 
 
             print(f"Current Parking Capacity: {current_vehicles}")
@@ -87,7 +100,11 @@ def mall_menu(stored_mall_id):
 
 
         if mall_choice == 2:
-            print("")
+            pass
+
+
+
+
 
         if mall_choice == 3:
             print("Parking Fee coming soon!")
@@ -101,5 +118,3 @@ def mall_menu(stored_mall_id):
         if mall_choice == 6:
             print("Returning to Driver Menu")
 
-
-mall_menu('02')

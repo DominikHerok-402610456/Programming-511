@@ -7,7 +7,7 @@
 from validation import validate_yes_no
 from register import register_user
 from login import login_user
-
+from driver_menu import driver_menu
 
 def display_function():
     #while loop to check for choice continually
@@ -35,7 +35,7 @@ def display_function():
                 if role == 'admin':
                     print('Admin!')
                 elif role == 'driver':
-                    print('Driver!')
+                    driver_menu(username)
                 elif role == 'owner':
                     print('Welcome Grand Master Supreme')
                 else:

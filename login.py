@@ -47,6 +47,3 @@ def login_user():
     if username_check == False:
         print('No user found with that username. Please try again or register in the main menu.')
         return None
-
-
-login_user()

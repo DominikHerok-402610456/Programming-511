@@ -8,17 +8,17 @@ from file_handler import read_lines
 from mall_menu import mall_menu
 from validation import validate_yes_no
 
-def driver_menu():
+def driver_menu(username):
+    #username received from display
     print("=================================")
     print("          Driver Menu")
     print("=================================")
+    print(f"Logged in user: {username}")
     print("1. Select Mall")
-    print("2. Enter Parking")
-    print("3. Exit Parking")
-    print("4. View Parking Fee")
-    print("5. Make Payment")
-    print("6. View Parking/Payment History")
-    print("7. Logout")
+    print("2. View Parking Fee")
+    print("3. Make Payment")
+    print("4. View Parking/Payment History")
+    print("5. Logout")
 
     # ----------------------------------------------------------------------------------------------------------
     # For loop to iterate through each line in malls.txt and isolate each variable
@@ -32,7 +32,7 @@ def driver_menu():
 
     driver_choice = 0
     #Menu Function
-    while driver_choice != 7:
+    while driver_choice != 5:
         # ----------------------------------------------------------------------------------------------------------
         driver_choice = input("Please enter your choice: ")
 
@@ -94,11 +94,11 @@ def driver_menu():
 
 
 
-        mall_menu(stored_mall_id)
+        mall_menu(username,stored_mall_id)
 
         # ----------------------------------------------------------------------------------------------------------
         #LOGOUT logic using validate_yes_no function
-        if driver_choice == 7:
+        if driver_choice == 5:
             logout_choice = input("Are you sure you want to logout? Enter either Yes or No.")
             logout_result = validate_yes_no(logout_choice)
             if logout_result is True:
@@ -109,6 +109,4 @@ def driver_menu():
                 print("Please enter either Yes or No.")
                 driver_choice = 0
 
-
-
-driver_menu()
+driver_menu('dom')
