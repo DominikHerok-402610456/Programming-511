@@ -15,7 +15,7 @@ def display_function():
     while choice != 3:
 
         print('================================='+'\nSmart Mall Parking System'+'\n================================='+'\n1. Login'+'\n2. Register'+'\n3. Exit')
-        user_input = input("Please enter your choice: (1 | 2 | 3): ")
+        user_input = input("Please enter your choice: (1,2,3): ")
         #first check for strings
         if user_input.isdigit():
             choice = int(user_input)
@@ -28,16 +28,18 @@ def display_function():
             #login.py
             # Remember to assign the function to a variable for the return
             login_result = login_user() # Returns role if successful, None if not
+            if login_result is not None:
+                username, role = login_result
 
-            #redirect to appropriate menu based on role
-            if login_result == 'admin':
-                print('Admin!')
-            elif login_result == 'driver':
-                print('Driver!')
-            elif login_result == 'owner':
-                print('Welcome Grand Master Supreme')
-            else:
-                print('Role not found. Please try again or contact support.')
+                 #redirect to appropriate menu based on role
+                if role == 'admin':
+                    print('Admin!')
+                elif role == 'driver':
+                    print('Driver!')
+                elif role == 'owner':
+                    print('Welcome Grand Master Supreme')
+                else:
+                    print('Role not found. Please try again or contact support.')
 
         elif choice == 2:
             #register.py to register user
@@ -46,7 +48,7 @@ def display_function():
 
             #if registration is successful, login user
             if registration_result is True:
-                login_user()
+                login_user(username,role)
 
 
         #Check for yes and no inputs

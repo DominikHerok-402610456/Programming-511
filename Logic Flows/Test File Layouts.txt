@@ -1,0 +1,4 @@
+users.txt - username,password,role
+malls.txt - mall_id,name,capacity,pricing_type
+parking_records.txt - record_id,username,mall_id,entry_time,exit_time,fee
+payments.txt - payment_id,record_id,amount,paid_at

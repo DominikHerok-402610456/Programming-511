@@ -6,6 +6,7 @@
 
 from file_handler import read_lines
 from mall_menu import mall_menu
+from validation import validate_yes_no
 
 def driver_menu():
     print("=================================")
@@ -94,8 +95,6 @@ def driver_menu():
 
 
         mall_menu(stored_mall_id)
-
-
 
         # ----------------------------------------------------------------------------------------------------------
         #LOGOUT logic using validate_yes_no function

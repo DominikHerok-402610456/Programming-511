@@ -35,7 +35,7 @@ def login_user():
                 entered_password = input("Please enter your password: ")
                 if entered_password == stored_password:
                     print('Login Successful!')
-                    return role #will be used elsewhere to determine what to do
+                    return entered_username, role #will be used elsewhere to determine what to do
 
                 else:
                     print('Incorrect password. Please try again.')
@@ -49,3 +49,4 @@ def login_user():
         return None
 
 
+login_user()
