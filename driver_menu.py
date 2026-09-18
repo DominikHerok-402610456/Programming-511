@@ -8,6 +8,7 @@ from file_handler import read_lines
 from mall_menu import mall_menu
 from validation import validate_yes_no
 
+
 def driver_menu(username):
     #username received from display
     print("=================================")
@@ -108,5 +109,3 @@ def driver_menu(username):
             else: #or if NONE
                 print("Please enter either Yes or No.")
                 driver_choice = 0
-
-driver_menu('dom')
