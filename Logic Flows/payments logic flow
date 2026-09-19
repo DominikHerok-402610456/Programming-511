@@ -1,0 +1,19 @@
+Make Payment
+    ↓
+Find completed parking record
+    ↓
+No record? → return to menu
+    ↓
+Check payments.txt
+    ↓
+Already paid?
+   ↙       ↘
+ YES       NO
+  ↓         ↓
+message   Generate payment ID
+             ↓
+          timestamp
+             ↓
+        create payment record
+             ↓
+          save_record()

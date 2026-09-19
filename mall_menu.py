@@ -129,7 +129,7 @@ def mall_menu(username, stored_mall_id):
                 print("Parking Unsuccessful! No spaces available.")
 
         # ----------------------------------------------------------------------------------------------------------
-        #2. Exit Parking
+        #2. Exit Parking - record_id,username,mall_id,entry_time,exit_time,fee
 
         if mall_choice == 2:
             active_record = None
@@ -151,6 +151,11 @@ def mall_menu(username, stored_mall_id):
                     active_record = split_line_list
                     break
 
+            if active_record == None:
+                print('You are not currently parked in this mall. Please check in first.')
+                continue
+
+
             # ----------------------------------------------------------------------------------------------------------#
             #Variables for time and parking calculations
             exit_time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
@@ -171,7 +176,6 @@ def mall_menu(username, stored_mall_id):
 
             fee = pricing(stored_mall_id,billable_hours)
             print('Exited Parking Successfully!')
-            print(f"Your Parking Fee Total: R{fee:.2f}")
 
             # ----------------------------------------------------------------------------------------------------------#
             #Update record with exit time and fee
@@ -189,23 +193,125 @@ def mall_menu(username, stored_mall_id):
 
                 updated_records.append(','.join(split_line_list))
 
-        #read all records, copy into updated_records, write all records back with only the one that has been updated
-        write_records('parking_records.txt', updated_records)
+                #read all records, copy into updated_records, write all records back with only the one that has been updated
+                write_records('parking_records.txt', updated_records)
 
 
 
         # ----------------------------------------------------------------------------------------------------------
-        # 3. View Parking Fee
+        # 3. View Parking Fee - record_id,username,mall_id,entry_time,exit_time,fee
         if mall_choice == 3:
-            print("Parking Fee coming soon!")
+            #Looping through updated records here
+            for line in read_lines('parking_records.txt'):
+                stripped_line = line.strip()
+                if stripped_line == '':
+                    continue
+                split_line_list = stripped_line.split(',')
+                fee_record_id = split_line_list[0]
+                fee_stored_username = split_line_list[1]
+                fee_stored_mall_id = split_line_list[2]
+                fee_stored_exit_time = split_line_list[4]
+                fee_stored_fee = float(split_line_list[5])
+
+
+                if fee_stored_username == username and fee_stored_exit_time != '' and fee_stored_mall_id == stored_mall_id:
+                    print(f"Your Parking Fee Total: R{fee_stored_fee:.2f}")
+
+
+
         # ----------------------------------------------------------------------------------------------------------
-        # 4. Make Payment
+        # 4. Make Payment - payment_id,record_id,amount,paid_at
         if mall_choice == 4:
-            print("Payment coming soon!")
+            # ----------------------------------------------------------------------------------------------------------
+            # Make Payment section
+            fee_record_id = None
+            fee_amount = None
+            for line in read_lines('parking_records.txt'):
+                stripped_line = line.strip()
+                if stripped_line == '':
+                    continue
+                split_line_list = stripped_line.split(',')
+                fee_stored_record_id = split_line_list[0]
+                fee_stored_username = split_line_list[1]
+                fee_stored_mall_id = split_line_list[2]
+                fee_stored_exit_time = split_line_list[4]
+                fee_stored_fee = split_line_list[5]
+
+                #only if conditions are met, update fee_record_id and fee_amount and carry down
+                if fee_stored_username == username and fee_stored_exit_time != '' and fee_stored_mall_id == stored_mall_id:
+                    fee_record_id = fee_stored_record_id
+                    fee_amount = float(fee_stored_fee)
+                    break
+            #Check if fee_record_id is still NONE
+            if fee_record_id is None:
+                print('No outstanding parking fee found.')
+                continue
+            # ----------------------------------------------------------------------------------------------------------
+            #Make a new payment logic
+            payments_exists = False
+            #Search through existing payments again and isolate variables
+            for line in read_lines('payments.txt'):
+                stripped_line = line.strip()
+                if stripped_line == '':
+                    continue
+                split_line_list = stripped_line.split(',')
+                payment_id = split_line_list[0]
+                payment_record_id = split_line_list[1]
+                payment_amount = float(split_line_list[2])
+                payment_paid_at = split_line_list[3]
+                #No payment if record already exists in payments.txt
+                if payment_record_id == fee_record_id:
+                    payments_exists = True
+                    break
+            if payments_exists:
+                print('You have already paid. You may exit now')
+            else:
+                #otherwise move to payment
+                highest_payment_id = 0
+
+                for line in read_lines('payments.txt'):
+                    stripped_line = line.strip()
+
+                    if stripped_line == '':  # Ignore blank lines
+                        continue
+
+                    split_line_list = stripped_line.split(',')
+
+                    payment_id = int(split_line_list[0])
+
+                    if payment_id > highest_payment_id:
+                        highest_payment_id = payment_id
+                # generate new payment ID
+                new_payment_id = highest_payment_id + 1
+                new_payment_id = f"{new_payment_id:03d}"
+                payment_paid_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+                #Build new payment record
+                new_payment = f"{new_payment_id},{fee_record_id},{fee_amount},{payment_paid_at}"
+                save_record('payments.txt', new_payment)
+
+                print('Payment successful!')
+                print(f'Payment Amount: R{fee_amount:.2f}')
         # ----------------------------------------------------------------------------------------------------------
         # 5. View Payment/Parking History
         if mall_choice == 5:
-            print("Payment History coming soon!")
+            #will only be reading already made records and then displaying them for the user
+            for line in read_lines('parking_records.txt'):
+                stripped_line = line.strip()
+                if stripped_line == '':  # Ignore blank lines
+                    continue
+                split_line_list = stripped_line.split(',')
+                history_record_id = split_line_list[0]
+                history_username = split_line_list[1]
+                history_mall_id = split_line_list[2]
+                history_entry_time = split_line_list[3]
+                history_exit_time = split_line_list[4]
+                history_fee = float(split_line_list[5])
+
+
+
+
+
+
         # ----------------------------------------------------------------------------------------------------------
         # 6. Return to Driver Menu
         if mall_choice == 6:

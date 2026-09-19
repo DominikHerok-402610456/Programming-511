@@ -9,6 +9,7 @@ from register import register_user
 from login import login_user
 from driver_menu import driver_menu
 
+# ----------------------------------------------------------------------------------------------------------
 def display_function():
     #while loop to check for choice continually
     choice = 0
@@ -64,7 +65,7 @@ def display_function():
             else:
                 print('Please enter either Yes or No.')
                 choice = 0
-
+# -----------------------------------------------------------------------------------------------------------------------------------
 display_function()
 
 

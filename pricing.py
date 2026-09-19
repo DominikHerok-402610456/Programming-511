@@ -3,7 +3,7 @@
 # ==========================================
 
 """Pricing function for mall menu. Containing pricing for each mall type. This allows for easy modification of pricing."""
-
+# ----------------------------------------------------------------------------------------------------------
 def pricing(stored_mall_id,billable_hours):
 
     #Pricing Logic for MALL 01 - Gateway Theatre of Shopping - R15 - FLAT FEE
@@ -22,3 +22,4 @@ def pricing(stored_mall_id,billable_hours):
             fee = 60
 
     return fee
+# ----------------------------------------------------------------------------------------------------------

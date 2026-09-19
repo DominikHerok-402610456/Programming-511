@@ -1,9 +1,10 @@
 # ==========================================
 # VALIDATION.PY
 # ==========================================
+
 '''Handles Validation functions.'''
 
-
+# ----------------------------------------------------------------------------------------------------------
 #Main Validation for exit choice on display function
 #ONLY returns state
 def validate_yes_no(exit_choice):
@@ -14,3 +15,4 @@ def validate_yes_no(exit_choice):
         return False
     else:
         return None
+# ----------------------------------------------------------------------------------------------------------

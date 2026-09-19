@@ -2,9 +2,9 @@
 # LOGIN.PY
 # ==========================================
 """Handles all login functions."""
-
+# ----------------------------------------------------------------------------------------------------------
 from file_handler import read_lines
-
+# ----------------------------------------------------------------------------------------------------------
 def login_user():
     print('=================================' + '\nLogin Page:' + '\n=================================\n')
     entered_username = input("Please enter your username: ")
@@ -47,3 +47,4 @@ def login_user():
     if username_check == False:
         print('No user found with that username. Please try again or register in the main menu.')
         return None
+# ----------------------------------------------------------------------------------------------------------
