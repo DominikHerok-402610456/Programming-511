@@ -10,7 +10,7 @@ from pricing import pricing
 
 
 def mall_menu(username, stored_mall_id):
-    #
+
     # ----------------------------------------------------------------------------------------------------------
     malls = read_lines('malls.txt')
     for line in malls:
@@ -30,44 +30,46 @@ def mall_menu(username, stored_mall_id):
             print(f'{mall_name} has {mall_capacity} seats and pricing is {pricing_type}')
             break
     # ----------------------------------------------------------------------------------------------------------
-    # Calculate info needed for mall_menu capacity and current_vehicles inital display
-    current_vehicles = 0
-    for line in read_lines('parking_records.txt'):
-        stripped_line = line.strip()
-        if stripped_line == '':
-            continue
-        split_line_list = stripped_line.split(',')
-        # IF exit time is not recorded, then car is still parked
-        mall_id = split_line_list[2]
-        exit_time = split_line_list[4]
-        # State duplication no manual check
-        # Check if mall_id matches the stored_mall_id and only counts exit time if true
-        if mall_id == stored_mall_id:
-            # add 1 to current_vehicles if exit time is empty
-            if exit_time == '':
-                current_vehicles += 1
-    # ----------------------------------------------------------------------------------------------------------
-    available_spaces = int(mall_capacity) - current_vehicles
-    print("=================================")
-    print(f"   {mall_name}")
-    print("=================================")
-    print(f"Currently Parked Vehicles: {current_vehicles} ")
-    print(f"Maximum Parking Capacity: {mall_capacity}")
-    print(f'Spaces currently available: ',+available_spaces,'/',+int(mall_capacity))
-    print("---------------------------------")
-    print("1. Enter Parking")
-    print("2. Exit Parking")
-    print("3. View Parking Fee")
-    print("4. Make Payment")
-    print("5. View Payment/Parking History")
-    print("6. Return to Driver Menu")
-
-    # ----------------------------------------------------------------------------------------------------------
     # Persistent loop to handle driver choices
     mall_choice = 0
     while mall_choice != 6:
 
+        # Calculate info needed for mall_menu capacity and current_vehicles initial display
+        current_vehicles = 0
+        for line in read_lines('parking_records.txt'):
+            stripped_line = line.strip()
+            if stripped_line == '':
+                continue
+            split_line_list = stripped_line.split(',')
+            # IF exit time is not recorded, then car is still parked
+            mall_id = split_line_list[2]
+            exit_time = split_line_list[4]
+            # State duplication no manual check
+            # Check if mall_id matches the stored_mall_id and only counts exit time if true
+            if mall_id == stored_mall_id:
+                # add 1 to current_vehicles if exit time is empty
+                if exit_time == '':
+                    current_vehicles += 1
+
+        available_spaces = int(mall_capacity) - current_vehicles
+        print("=================================")
+        print(f"   {mall_name}")
+        print("=================================")
+        print(f"Currently Parked Vehicles: {current_vehicles} ")
+        print(f"Maximum Parking Capacity: {mall_capacity}")
+        print(f'Spaces currently available: ', +available_spaces, '/', +int(mall_capacity))
+
+        #Moved to inside loop for persistent display after each choice
+        print("---------------------------------")
+        print("1. Enter Parking")
+        print("2. Exit Parking")
+        print("3. View Parking Fee")
+        print("4. Make Payment")
+        print("5. View Payment/Parking History")
+        print("6. Return to Driver Menu")
         mall_choice = input("Please enter your choice: ")
+        # ----------------------------------------------------------------------------------------------------------
+        #check for valid input
         if mall_choice.isdigit():
             #if correct input type, convert to int and assign back to variable for use
             mall_choice = int(mall_choice)
@@ -295,7 +297,8 @@ def mall_menu(username, stored_mall_id):
         # 5. View Payment/Parking History
         if mall_choice == 5:
             #will only be reading already made records and then displaying them for the user
-            for line in read_lines('parking_records.txt'):
+            # PARKING HISTORY
+            for line in read_lines('parking_records.txt'): #record_id,username,mall_id,entry_time,exit_time,fee
                 stripped_line = line.strip()
                 if stripped_line == '':  # Ignore blank lines
                     continue
@@ -307,6 +310,46 @@ def mall_menu(username, stored_mall_id):
                 history_exit_time = split_line_list[4]
                 history_fee = float(split_line_list[5])
 
+                #Checks for username input into mall menu vs history
+                if history_username == username:
+                    print("=================================")
+                    print(f"USER PARKING AND PAYMENT HISTORY")
+                    print("=================================")
+                    print(f"Record ID: {history_record_id}")
+                    print(f"Username: {history_username}")
+                    print(f"Mall ID: {history_mall_id}")
+                    print(f"Entry Time: {history_entry_time}")
+                    print(f"Exit Time: {history_exit_time}")
+                    print(f"Fee: R{history_fee:.2f}")
+                    print("---------------------------------")
+
+            # PAYMENT HISTORY
+            payment_found = False
+            for line in read_lines('payments.txt'): #payment_id,record_id,amount,paid_at
+                stripped_line = line.strip()
+                if stripped_line == '':  # Ignore blank lines
+                    continue
+                split_line_list = stripped_line.split(',')
+                history_payment_id = split_line_list[0]
+                history_payment_record_id = split_line_list[1]
+                history_payment_amount = float(split_line_list[2])
+                history_payment_paid_at = split_line_list[3]
+
+                if history_payment_record_id == history_record_id:
+                    payment_found = True
+                    print("Payment Status: PAID")
+                    print(f"Payment ID: {history_payment_id}")
+                    print(f"Record ID: {history_payment_record_id}")
+                    print(f"Amount: R{history_payment_amount:.2f}")
+                    print(f"Paid At: {history_payment_paid_at}")
+                    print("---------------------------------")
+
+            if payment_found is False:
+                print("Payment Status: NOT PAID")
+                print("---------------------------------")
+
+
+
 
 
 
@@ -316,4 +359,5 @@ def mall_menu(username, stored_mall_id):
         # 6. Return to Driver Menu
         if mall_choice == 6:
             print("Returning to Driver Menu")
+            return
 

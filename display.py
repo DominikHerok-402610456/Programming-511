@@ -8,6 +8,8 @@ from validation import validate_yes_no
 from register import register_user
 from login import login_user
 from driver_menu import driver_menu
+from admin_menu import admin_menu
+from owner_menu import owner_menu
 
 # ----------------------------------------------------------------------------------------------------------
 def display_function():
@@ -34,11 +36,11 @@ def display_function():
 
                  #redirect to appropriate menu based on role
                 if role == 'admin':
-                    print('Admin!')
+                    admin_menu(username)
                 elif role == 'driver':
                     driver_menu(username)
                 elif role == 'owner':
-                    print('Welcome Grand Master Supreme')
+                    owner_menu(username)
                 else:
                     print('Role not found. Please try again or contact support.')
 
