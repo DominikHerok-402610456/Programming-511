@@ -6,6 +6,7 @@
 
 # ----------------------------------------------------------------------------------------------------------
 #Main Validation for exit choice on display function
+# ----------------------------------------------------------------------------------------------------------
 #ONLY returns state
 def validate_yes_no(exit_choice):
     exit_choice = exit_choice.strip().upper()

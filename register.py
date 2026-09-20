@@ -9,6 +9,7 @@ from file_handler import read_lines
 from file_handler import save_record
 # ----------------------------------------------------------------------------------------------------------
 #Main Register Function
+# ----------------------------------------------------------------------------------------------------------
 def register_user():
 
     # Print Register Art
@@ -42,6 +43,7 @@ def register_user():
             break
     # ----------------------------------------------------------------------------------------------------------
     #Register User to text file
+    # ----------------------------------------------------------------------------------------------------------
     entered_password = input("Please enter your new password:")
     new_user = entered_username + "," + entered_password + ",driver"
     save_record("users.txt",new_user)

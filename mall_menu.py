@@ -82,6 +82,7 @@ def mall_menu(username, stored_mall_id):
 
         # ----------------------------------------------------------------------------------------------------------
         # 1. Enter Parking
+        # ----------------------------------------------------------------------------------------------------------
         # We must get the following info to complete the record: record_id,username,mall_id,entry_time,exit_time,fee
         entry_time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         exit_time = ""
@@ -132,6 +133,7 @@ def mall_menu(username, stored_mall_id):
 
         # ----------------------------------------------------------------------------------------------------------
         #2. Exit Parking - record_id,username,mall_id,entry_time,exit_time,fee
+        # ----------------------------------------------------------------------------------------------------------
 
         if mall_choice == 2:
             active_record = None
@@ -202,6 +204,7 @@ def mall_menu(username, stored_mall_id):
 
         # ----------------------------------------------------------------------------------------------------------
         # 3. View Parking Fee - record_id,username,mall_id,entry_time,exit_time,fee
+        # ----------------------------------------------------------------------------------------------------------
         if mall_choice == 3:
             #Looping through updated records here
             for line in read_lines('parking_records.txt'):
@@ -223,6 +226,7 @@ def mall_menu(username, stored_mall_id):
 
         # ----------------------------------------------------------------------------------------------------------
         # 4. Make Payment - payment_id,record_id,amount,paid_at
+        # ----------------------------------------------------------------------------------------------------------
         if mall_choice == 4:
             # ----------------------------------------------------------------------------------------------------------
             # Make Payment section
@@ -295,6 +299,7 @@ def mall_menu(username, stored_mall_id):
                 print(f'Payment Amount: R{fee_amount:.2f}')
         # ----------------------------------------------------------------------------------------------------------
         # 5. View Payment/Parking History
+        # ----------------------------------------------------------------------------------------------------------
         if mall_choice == 5:
             #will only be reading already made records and then displaying them for the user
             # PARKING HISTORY
@@ -348,15 +353,9 @@ def mall_menu(username, stored_mall_id):
                 print("Payment Status: NOT PAID")
                 print("---------------------------------")
 
-
-
-
-
-
-
-
         # ----------------------------------------------------------------------------------------------------------
         # 6. Return to Driver Menu
+        # ----------------------------------------------------------------------------------------------------------
         if mall_choice == 6:
             print("Returning to Driver Menu")
             return

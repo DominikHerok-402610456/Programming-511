@@ -1,0 +1,14 @@
+# ==========================================
+# MAIN.PY
+# ==========================================
+
+"""Smart Mall Parking System CORE entry point. """
+
+from display import display_function
+
+def main():
+    display_function()
+
+#Only run if file is MAIN
+if __name__ == "__main__":
+    main()
