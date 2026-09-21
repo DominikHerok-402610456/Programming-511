@@ -51,7 +51,18 @@ def display_function():
 
             #if registration is successful, login user
             if registration_result is True:
-                login_user(username,role)
+
+                login_result = login_user()
+                #Login user based off of role returned
+                if login_result is not None:
+                    username, role = login_result
+
+                    # Redirect to appropriate menu based on role
+                    if role == 'driver':
+                        driver_menu(username)
+
+                    else:
+                        print('Role not found. Please try again or contact support.')
 
 
         #Check for yes and no inputs
@@ -68,6 +79,5 @@ def display_function():
                 print('Please enter either Yes or No.')
                 choice = 0
 # -----------------------------------------------------------------------------------------------------------------------------------
-display_function()
 
 

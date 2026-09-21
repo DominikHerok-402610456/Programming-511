@@ -19,7 +19,10 @@ def register_user():
     while True: #persist check for username
 
         entered_username = input("Please enter a username. (It may consist of only letters and can include numbers. No spaces are allowed. (e.g JohnDoe123)): ")
-        #Validation will come from validation.py later
+        #Validation -
+        if not entered_username.isalnum():
+            print("Username may only contain letters and numbers. No spaces are allowed.")
+            continue
         users = read_lines("users.txt")
         username_exists = False
 

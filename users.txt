@@ -12,3 +12,5 @@ Fred Burger,1234,driver
 bob,bobo123,driver
 popo,popo223,driver
 plop,21234,driver
+newuser,newuser!@#,driver
+username,username345,driver

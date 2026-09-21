@@ -94,16 +94,16 @@ def owner_menu(username):
         # 2. View Mall Revenue
         # ----------------------------------------------------------------------------------------------------------
         if owner_choice == 2:
+            #List of set mall ids
             mall_ids = ["01", "02", "03"]
             malls = read_lines('malls.txt')
 
-            for mall_id in mall_ids:
+            for mall_id in mall_ids: #in mall id list
 
-                # Find mall name
+                # Find mall name assoscribed to mall id
                 mall_name = ''
                 for line in malls:
                     stripped_line = line.strip()
-
                     if stripped_line == '':
                         continue
                     split_line_list = stripped_line.split(',')
