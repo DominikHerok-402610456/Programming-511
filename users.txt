@@ -14,3 +14,4 @@ popo,popo223,driver
 plop,21234,driver
 newuser,newuser!@#,driver
 username,username345,driver
+domtest2,domtest2,driver

@@ -314,6 +314,7 @@ def driver_menu(username):
 
         # ----------------------------------------------------------------------------------------------------------
         # 5. Logout
+        # ----------------------------------------------------------------------------------------------------------
         if driver_choice == 5:
             logout_choice = input("Are you sure you want to logout? Enter either Yes or No: ")
             logout_result = validate_yes_no(logout_choice)
