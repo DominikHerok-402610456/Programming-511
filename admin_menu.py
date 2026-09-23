@@ -89,6 +89,7 @@ def admin_menu(username):
 
         # ----------------------------------------------------------------------------------------------------------
         # 1. View Currently Parked Vehicles
+        # ----------------------------------------------------------------------------------------------------------
         #Will read from parking records.
         if admin_choice == 1:
 
@@ -123,6 +124,7 @@ def admin_menu(username):
 
         # ----------------------------------------------------------------------------------------------------------
         # 2. View Parking Capacity
+        # ----------------------------------------------------------------------------------------------------------
         # Will read from parking records.
         if admin_choice == 2:
             #Same counter to count vehicles, will compare against total mall capacity in calcs
@@ -152,6 +154,7 @@ def admin_menu(username):
 
         # ----------------------------------------------------------------------------------------------------------
         # 3. View Daily Activity
+        # ----------------------------------------------------------------------------------------------------------
         # Will read from parking records.
         if admin_choice == 3:
 
@@ -172,7 +175,7 @@ def admin_menu(username):
                 admin_exit_time = split_line_list[4]
 
                 today = datetime.now().date()
-                entry_datetime = datetime.strptime(admin_entry_time, "%Y-%m-%d %H:%M")
+                entry_datetime = datetime.strptime(admin_entry_time, "%d-%m-%Y %H:%M:%S")
 
                 if admin_mall_id == stored_mall_id and entry_datetime.date() == today:
                     daily_activity_count += 1
@@ -180,6 +183,7 @@ def admin_menu(username):
 
         # ----------------------------------------------------------------------------------------------------------
         # 4. Logout
+        # ----------------------------------------------------------------------------------------------------------
         if admin_choice == 4:
             print('Returning to main menu.')
             return

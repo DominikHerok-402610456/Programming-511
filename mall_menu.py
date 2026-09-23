@@ -126,7 +126,10 @@ def mall_menu(username, stored_mall_id):
                     # Create the record string
                     new_record = f"{new_record_id:03d},{username},{stored_mall_id},{entry_time},{exit_time},{fee}"
                     save_record("parking_records.txt", new_record)
+                    print("---------------------------------")
                     print("Parking Successful!")
+                    print("---------------------------------")
+
 
             else:
                 print("Parking Unsuccessful! No spaces available.")
@@ -179,7 +182,9 @@ def mall_menu(username, stored_mall_id):
                 billable_hours = parking_duration_complete_hours
 
             fee = pricing(stored_mall_id,billable_hours)
+            print("---------------------------------")
             print('Exited Parking Successfully!')
+            print("---------------------------------")
 
             # ----------------------------------------------------------------------------------------------------------#
             #Update record with exit time and fee
@@ -198,7 +203,7 @@ def mall_menu(username, stored_mall_id):
                 updated_records.append(','.join(split_line_list))
 
                 #read all records, copy into updated_records, write all records back with only the one that has been updated
-                write_records('parking_records.txt', updated_records)
+            write_records('parking_records.txt', updated_records)
 
 
 

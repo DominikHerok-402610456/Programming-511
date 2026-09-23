@@ -25,7 +25,9 @@ def display_function():
         else:
             print('Please choose a number between 1 and 3')
             continue
-
+        # ----------------------------------------------------------------------------------------------------------
+        # 1. Login
+        # ----------------------------------------------------------------------------------------------------------
         #if digit, check if 1,2,3 or anything else
         if choice == 1:
             #login.py
@@ -43,7 +45,9 @@ def display_function():
                     owner_menu(username)
                 else:
                     print('Role not found. Please try again or contact support.')
-
+        # ----------------------------------------------------------------------------------------------------------
+        # 2. Register
+        # ----------------------------------------------------------------------------------------------------------
         elif choice == 2:
             #register.py to register user
             #Remember to assign the function to a variable for the return
@@ -64,7 +68,9 @@ def display_function():
                     else:
                         print('Role not found. Please try again or contact support.')
 
-
+        # ----------------------------------------------------------------------------------------------------------
+        # 3. Logout
+        # ----------------------------------------------------------------------------------------------------------
         #Check for yes and no inputs
         elif choice == 3:
             exit_choice = input('Are you sure you want to exit? Enter either Yes or No.')
