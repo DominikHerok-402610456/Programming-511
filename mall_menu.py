@@ -211,7 +211,11 @@ def mall_menu(username, stored_mall_id):
         # 3. View Parking Fee - record_id,username,mall_id,entry_time,exit_time,fee
         # ----------------------------------------------------------------------------------------------------------
         if mall_choice == 3:
-            #Looping through updated records here
+
+            #boolean flag - So far no unpaid fees have been found
+            fee_found = False
+
+            #Looping through updated parking records to check for if driver has exited already
             for line in read_lines('parking_records.txt'):
                 stripped_line = line.strip()
                 if stripped_line == '':
@@ -223,11 +227,34 @@ def mall_menu(username, stored_mall_id):
                 fee_stored_exit_time = split_line_list[4]
                 fee_stored_fee = float(split_line_list[5])
 
-
+                # Check if this is a completed parking record for the current user and mall
+                #does fee belong to current user and mall and is exit time not empty (still parked)?
                 if fee_stored_username == username and fee_stored_exit_time != '' and fee_stored_mall_id == stored_mall_id:
-                    print(f"Your Parking Fee Total: R{fee_stored_fee:.2f}")
+                    # Check whether this specific parking record has already been paid
+                    payment_exists = False
 
+                    # Iterate through existing payments to isolate variable needed to check if payment_exists
+                    for line in read_lines('payments.txt'):
+                        stripped_line = line.strip()
+                        if stripped_line == '':
+                            continue
+                        split_line_list = stripped_line.split(',')
+                        payment_split = split_line_list[1]
 
+                        # If payment_split matches fee_record_id, then we have a match and parking is already paid
+                        if payment_split == fee_record_id:
+                            payment_exists = True
+                            break
+
+                    # Only display unpaid parking fees
+                    if payment_exists is False:
+                        print(f"Your Parking Fee Total: R{fee_stored_fee:.2f}")
+                        #Variable representing a fee has been found
+                        fee_found = True
+
+            # If no unpaid parking fees are found, display a message
+            if fee_found is False:
+                print("No outstanding parking fees found.")
 
         # ----------------------------------------------------------------------------------------------------------
         # 4. Make Payment - payment_id,record_id,amount,paid_at
