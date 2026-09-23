@@ -232,6 +232,9 @@ def mall_menu(username, stored_mall_id):
             # Make Payment section
             fee_record_id = None
             fee_amount = None
+
+
+            # Search for a completed parking record that has NOT been paid
             for line in read_lines('parking_records.txt'):
                 stripped_line = line.strip()
                 if stripped_line == '':
@@ -247,8 +250,30 @@ def mall_menu(username, stored_mall_id):
                 if fee_stored_username == username and fee_stored_exit_time != '' and fee_stored_mall_id == stored_mall_id:
                     fee_record_id = fee_stored_record_id
                     fee_amount = float(fee_stored_fee)
-                    break
-            #Check if fee_record_id is still NONE
+
+                    # Check whether this specific parking record has already been paid
+                    payments_exists = False
+
+                    #Iterate through existing payments to check if record_id matches
+                    for line in read_lines('payments.txt'):
+                        stripped_line = line.strip()
+                        if stripped_line == '':
+                            continue
+                        split_line_list = stripped_line.split(',')
+                        payment_split= split_line_list[1]
+
+                        #if payment_split matches fee_stored_record_id, then we have a match and parking is already paid
+                        if payment_split == fee_stored_record_id:
+                            payments_exists = True
+                            break
+
+                    # If it has not been paid, then we can proceed with payment
+                    if payments_exists is False:
+                        fee_record_id = fee_stored_record_id
+                        fee_amount = float(fee_stored_fee)
+                        break
+
+            #Check if fee_record_id is still NONE for nothin to pay
             if fee_record_id is None:
                 print('No outstanding parking fee found.')
                 continue
@@ -272,22 +297,19 @@ def mall_menu(username, stored_mall_id):
             if payments_exists:
                 print('You have already paid. You may exit now')
             else:
-                #otherwise move to payment
+                #otherwise move to payment process
                 highest_payment_id = 0
 
                 for line in read_lines('payments.txt'):
                     stripped_line = line.strip()
-
                     if stripped_line == '':  # Ignore blank lines
                         continue
-
                     split_line_list = stripped_line.split(',')
-
                     payment_id = int(split_line_list[0])
 
                     if payment_id > highest_payment_id:
                         highest_payment_id = payment_id
-                # generate new payment ID
+                # generate new payment ID based on highest payment ID
                 new_payment_id = highest_payment_id + 1
                 new_payment_id = f"{new_payment_id:03d}"
                 payment_paid_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
