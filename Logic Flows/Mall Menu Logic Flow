@@ -1,0 +1,268 @@
+MALL MENU LOGIC FLOW
+
+1. START / DISPLAY MALL INFORMATION
+------------------------------------
+
+START
+  ↓
+Receive Username + Selected Mall ID
+  ↓
+Read malls.txt
+  ↓
+Find Selected Mall
+  ↓
+Get:
+• Mall Name
+• Capacity
+• Pricing Type
+  ↓
+Read parking_records.txt
+  ↓
+Count Currently Parked Vehicles
+  ↓
+Calculate Available Spaces
+  ↓
+Display:
+• Mall Name
+• Current Vehicles
+• Maximum Capacity
+• Available Spaces
+• Pricing Type
+  ↓
+Display Mall Menu
+  ↓
+Enter Menu Choice
+
+
+2. MENU INPUT
+-------------
+
+Enter Menu Choice
+  ↓
+Is input numeric?
+  │
+  ├── NO → Display Error
+  │          ↓
+  │      Return to Menu
+  │
+  └── YES
+        ↓
+   Convert input to integer
+        ↓
+   Is choice between 1 and 6?
+        │
+        ├── NO → Display Error
+        │          ↓
+        │      Return to Menu
+        │
+        └── YES
+              ↓
+        Process Selected Option
+
+
+3. OPTION 1 — ENTER PARKING
+----------------------------
+
+Enter Parking
+  ↓
+Read parking_records.txt
+  ↓
+Find Highest Record ID
+  ↓
+Generate New Record ID
+  ↓
+Check Available Spaces
+  │
+  ├── NO SPACES
+  │      ↓
+  │   Display "Parking Unsuccessful"
+  │
+  └── SPACES AVAILABLE
+         ↓
+    Check Existing Parking Records
+         ↓
+    Is User Already Parked
+    at This Mall?
+         │
+         ├── YES → Display
+         │          "You are already parked"
+         │
+         └── NO
+               ↓
+          Create Parking Record
+               ↓
+          Save Record to parking_records.txt
+               ↓
+          Display "Parking Successful"
+               ↓
+          Return to Mall Menu
+
+
+4. OPTION 2 — EXIT PARKING
+---------------------------
+
+Exit Parking
+  ↓
+Read parking_records.txt
+  ↓
+Search for Active Record
+  ↓
+Does record match:
+• Current Username
+• Selected Mall
+• Empty Exit Time?
+  │
+  ├── NO → Display
+  │        "You are not currently parked"
+  │
+  └── YES
+        ↓
+   Get Current Exit Time
+        ↓
+   Convert Entry Time to Datetime
+        ↓
+   Convert Exit Time to Datetime
+        ↓
+   Calculate Parking Duration
+        ↓
+   Calculate Complete Hours
+        ↓
+   Is There a Partial Hour?
+      │
+      ├── YES → Add 1 Billable Hour
+      │
+      └── NO → Use Complete Hours
+        ↓
+   Send Mall ID + Billable Hours
+   to Pricing Function
+        ↓
+   Calculate Parking Fee
+        ↓
+   Update Parking Record
+        ↓
+   Add Exit Time
+        ↓
+   Add Calculated Fee
+        ↓
+   Write Updated Records
+        ↓
+   Display "Exited Parking Successfully"
+        ↓
+   Return to Mall Menu
+
+
+5. OPTION 3 — VIEW PARKING FEE
+-------------------------------
+
+View Parking Fee
+  ↓
+Read parking_records.txt
+  ↓
+Search Parking Records
+  ↓
+Does record match:
+• Current Username
+• Selected Mall
+• Completed Session?
+  │
+  ├── NO → Check Next Record
+  │
+  └── YES
+        ↓
+   Display Parking Fee
+        ↓
+   Check Next Record
+        ↓
+   Return to Mall Menu
+
+
+6. OPTION 4 — MAKE PAYMENT
+---------------------------
+
+Make Payment
+  ↓
+Read parking_records.txt
+  ↓
+Find Completed Parking Record
+  ↓
+Does record match:
+• Current Username
+• Selected Mall
+  │
+  ├── NO → Display
+  │        "No outstanding parking fee found"
+  │
+  └── YES
+        ↓
+   Store Record ID + Fee
+        ↓
+   Read payments.txt
+        ↓
+   Does Payment Already Exist
+   for This Record ID?
+        │
+        ├── YES → Display
+        │          "You have already paid"
+        │
+        └── NO
+              ↓
+         Find Highest Payment ID
+              ↓
+         Generate New Payment ID
+              ↓
+         Get Payment Timestamp
+              ↓
+         Create Payment Record
+              ↓
+         Save Payment to payments.txt
+              ↓
+         Display "Payment Successful"
+              ↓
+         Return to Mall Menu
+
+
+7. OPTION 5 — VIEW PARKING/PAYMENT HISTORY
+-------------------------------------------
+
+View Parking/Payment History
+  ↓
+Read parking_records.txt
+  ↓
+Find Records Belonging to Current User
+  ↓
+Display Parking Information:
+• Record ID
+• Username
+• Mall ID
+• Entry Time
+• Exit Time
+• Fee
+  ↓
+Read payments.txt
+  ↓
+Find Payment Matching Parking Record
+  ↓
+Payment Found?
+  │
+  ├── YES → Display:
+  │          • Payment Status: PAID
+  │          • Payment ID
+  │          • Amount
+  │          • Paid At
+  │
+  └── NO → Display:
+           • Payment Status: NOT PAID
+  ↓
+Return to Mall Menu
+
+
+8. OPTION 6 — RETURN TO DRIVER MENU
+------------------------------------
+
+Return to Driver Menu
+  ↓
+Display "Returning to Driver Menu"
+  ↓
+Exit Mall Menu
+  ↓
+Return to Driver Menu

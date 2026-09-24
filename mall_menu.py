@@ -66,7 +66,7 @@ def mall_menu(username, stored_mall_id):
         print("3. View Parking Fee")
         print("4. Make Payment")
         print("5. View Payment/Parking History")
-        print("6. Return to Driver Menu")
+        print("6. Return to Driver Menu.txt")
         mall_choice = input("Please enter your choice: ")
         # ----------------------------------------------------------------------------------------------------------
         #check for valid input
@@ -408,9 +408,9 @@ def mall_menu(username, stored_mall_id):
                 print("---------------------------------")
 
         # ----------------------------------------------------------------------------------------------------------
-        # 6. Return to Driver Menu
+        # 6. Return to Driver Menu.txt
         # ----------------------------------------------------------------------------------------------------------
         if mall_choice == 6:
-            print("Returning to Driver Menu")
+            print("Returning to Driver Menu.txt")
             return
 

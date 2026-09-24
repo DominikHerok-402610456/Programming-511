@@ -1,0 +1,148 @@
+START
+  ↓
+Display Driver Menu
+  ↓
+Enter Menu Choice
+  ↓
+Is input numeric?
+  ↓
+ NO ─────→ Return to Driver Menu
+  ↓ YES
+Convert input to integer
+  ↓
+Which option?
+  ↓
+1 / 2 / 3 / 4 / 5
+
+
+OPTION 1:
+Select Mall
+  ↓
+Display Available Malls
+  ↓
+Enter Mall Number
+  ↓
+Is Mall Number Valid?
+  │
+  ├── NO → Display Error
+  │          ↓
+  │      Enter Mall Number Again
+  │
+  └── YES
+        ↓
+   Store Mall ID
+        ↓
+   Store Mall Name
+        ↓
+   Open Mall Menu
+
+OPTION 2:
+View Parking Fee
+  ↓
+Has Mall Been Selected?
+  │
+  ├── NO → Display Error
+  │
+  └── YES
+        ↓
+   Search Parking Records
+        ↓
+   Is record:
+   • Current User?
+   • Selected Mall?
+   • Completed?
+        │
+        ├── NO → Check Next Record
+        │
+        └── YES
+              ↓
+        Display Parking Fee
+              ↓
+        Check Next Record
+
+Completed Record
+      ↓
+Already Paid?
+  │
+  ├── YES → Don't display as outstanding
+  │
+  └── NO → Display Fee
+
+Option 3: — Make Payment
+
+Make Payment
+  ↓
+Has Mall Been Selected?
+  │
+  ├── NO → Display Error
+  │
+  └── YES
+        ↓
+   Find Completed Parking Record
+        ↓
+   Record Found?
+   │
+   ├── NO → Display Error
+   │
+   └── YES
+        ↓
+   Check payments.txt
+        ↓
+   Already Paid?
+   │
+   ├── YES → Display "Already Paid"
+   │
+   └── NO
+        ↓
+   Find Highest Payment ID
+        ↓
+   Generate New Payment ID
+        ↓
+   Create Payment Record
+        ↓
+   Save Payment
+        ↓
+   Payment Successful
+
+
+Option 4:
+View History
+  ↓
+Has Mall Been Selected?
+  │
+  ├── NO → Display Error
+  │
+  └── YES
+        ↓
+   Search Parking Records
+        ↓
+   Current User + Selected Mall?
+   │
+   ├── NO → Check Next Record
+   │
+   └── YES
+        ↓
+   Display Parking Record
+        ↓
+   Still Parked?
+   │
+   ├── YES → Display "Still Parked"
+   │
+   └── NO → Display Exit Time + Fee
+                 ↓
+             Search Payments
+                 ↓
+             Payment Found?
+              │
+              ├── YES → Display Payment Details
+              │
+              └── NO → Display "Not Paid"
+
+Option 5:
+Logout
+  ↓
+Confirm Logout?
+  │
+  ├── YES → Return to Main Menu
+  │
+  └── NO → Return to Driver Menu
