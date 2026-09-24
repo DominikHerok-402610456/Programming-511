@@ -1,22 +1,22 @@
 # --------------------------------------------------------------------------------
-# README - Programming 511 Assignment
+# README – Programming 511 Assignment
 # --------------------------------------------------------------------------------
 
 Hello :)
 
-Please find my project here as well for your reference. I tried to do the developer thing:
+Please find my project here as well for your reference: https://github.com/DominikHerok-402610456/Programming-511.git
 
-## User Accounts
+## User Accounts:
 
-### Admin
+### Admin:
 - Username: `admin`
 - Password: `admin123`
 
-### Owner
+### Owner:
 - Username: `owner`
-- Password: `owner123` (safe passwords i know)
+- Password: `owner123` (safe passwords I know)
 
-## Malls and Pricing
+## Malls and Pricing:
 
 | Mall | Capacity | Pricing |
 |---|---:|---|
@@ -24,14 +24,14 @@ Please find my project here as well for your reference. I tried to do the develo
 | Pavilion Shopping Centre | 180 | R10 per hour or part thereof |
 | La Lucia Mall | 150 | R12 per hour, capped at R60 |
 
-## Data Files
+## Data Files:
 
 - `users.txt` – User account information
 - `malls.txt` – Mall information
 - `parking_records.txt` – Parking sessions
 - `payments.txt` – Payment records
 
-## Testing
+## Testing:
 
 The system was tested for:
 - User registration and login
@@ -43,7 +43,6 @@ The system was tested for:
 - Duplicate payment prevention
 - Parking/payment history
 - Driver, Admin and Owner functionality
-  (i hope it works)
 
 ## How to Run:
 
